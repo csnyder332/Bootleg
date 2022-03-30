@@ -4,8 +4,29 @@
   "description": "File structure and assets for Fullstack Codealong",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "A. Haldy",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlecRuin/Bootleg.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/AlecRuin/Bootleg/issues"
+  },
+  "homepage": "https://github.com/AlecRuin/Bootleg#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.3",
+    "express-session": "^1.17.2",
+    "inquirer": "^8.2.2",
+    "mysql": "^2.18.1",
+    "sequelize": "^6.17.0"
+  }
 }
