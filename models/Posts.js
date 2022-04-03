@@ -19,10 +19,6 @@ Posts.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    TimeStamp: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     user_id:{
         type: DataTypes.INTEGER,
         allowNull: false,
