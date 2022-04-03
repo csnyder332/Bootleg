@@ -1,11 +1,11 @@
-const User = require('./User');
-const Posts = require('./Posts');
-User.hasMany(Posts, {
+const user = require('./user');
+const posts = require('./posts');
+user.hasMany(posts, {
   foreignKey: 'user_id',
 });
 
-Posts.belongsTo(User, {
+posts.belongsTo(user, {
   foreignKey: 'user_id',
 });
 
-module.exports = { User, Posts};
+module.exports = { user, posts};
