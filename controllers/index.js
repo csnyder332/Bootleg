@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const homeroutes = require("./idkwhythisisnttheindex")
+const directoryroutes = require("./dir-routes")
 const apiRoutes = require('./api');
 router.use('/api', apiRoutes);
-router.use('/',homeroutes)
+router.use('/',directoryroutes)
 module.exports = router;
