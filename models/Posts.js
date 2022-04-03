@@ -11,11 +11,11 @@ posts.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    ImageURL: {
+    image_url: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Caption: {
+    caption: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -31,7 +31,6 @@ posts.init(
   {
     sequelize,
     freezeTableName: true,
-    underscored: true,
     modelName: 'posts',
   }
 );
