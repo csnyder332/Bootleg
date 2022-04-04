@@ -35,7 +35,7 @@
   
 
   ## Contribute
-  [Contributor Covenant](https://www.contributor-covenant.org/)
+  [Contributor Covenant](https://www.contributor-covenant.org/)  
   Alec Harvey  
   Gerald Pegg  
   Alex Contreras  
