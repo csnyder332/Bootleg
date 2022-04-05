@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
                 plain: true
             }));
             console.log("Post data after filtering: "+postdata);
-            res.render('homepage', {
+            res.render('dashboard', {
                 postdata,
                 loggedIn: req.session.loggedIn
             });
