@@ -8,16 +8,13 @@ const {
 const withAuth = require('../utils/auth');
 
 //Get all images
-router.get('/', withAuth, (req, res) => {
+router.get('/', (req, res) => {
     posts.findAll({
-            where: {
-                user_id: req.session.user_id
-            },
             include: [{
-                    model: Comment,
+                    model: comment,
                     include: {
                         model: user,
-                        attributes: ['username']
+                        attributes: ['username',"id"]
                     }
                 },
                 {
@@ -30,10 +27,11 @@ router.get('/', withAuth, (req, res) => {
             const postData = dbPostData.map(post => post.get({
                 plain: true
             }));
-            console.log("postData: "+postData);
+            console.log("postData: ");
+            console.log(postData);
             res.render('dashboard', {
                 postData,
-                loggedIn: true
+                loggedIn: req.session.loggedIn
             });
         })
         .catch(err => {
