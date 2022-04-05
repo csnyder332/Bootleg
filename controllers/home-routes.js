@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
                     }
                 },
                 {
-                    model: user,//uses the user_id in posts to convert user_id to username
+                    model: user, //uses the user_id in posts to convert user_id to username
                     attributes: ['username']
                 }
             ]
