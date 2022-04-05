@@ -8,19 +8,9 @@ const {
 
 
 router.get('/', (req, res) => {
-    console.log("flag 1")
     posts.findAll({
-            /*attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
-            ],
-            we dont need this, boss. We want to grab all the data anyways
-            */
             include: [{
                     model: comment,
-                    //attributes: ['id', 'caption', 'content', 'user_id', 'createdAt'], same thing. since we need all of it, no need to filter it
                     include: {
                         model: user,
                         attributes: ['username',"id"]
@@ -33,12 +23,10 @@ router.get('/', (req, res) => {
             ]
         })
         .then(dbPostData => {
-            console.log("flag 2");
             const postdata = dbPostData.map(post => post.get({
                 plain: true
             }));
-            console.log("Post data after filtering: ");
-            console.log(postdata);
+            console.log("Post data after filtering: "+postdata);
             res.render('homepage', {
                 postdata,
                 loggedIn: req.session.loggedIn
@@ -49,9 +37,9 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+/* this should be in api/post
 router.get('/post/:id', (req, res) => {
-    Post.findOne({
+    posts.findOne({
             where: {
                 id: req.params.id
             },
@@ -97,7 +85,7 @@ router.get('/post/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+*/
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
