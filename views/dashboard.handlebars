@@ -1,3 +1,4 @@
+{{#if loggedIn}}
 <section>
   <h2>Create New Post</h2>
 
@@ -11,10 +12,11 @@
     <input type="submit" class="btn" value="Upload"/>
   </form>
 </section>
-
+{{/if}}
+{{!--
 {{#if posts.length}}
 <section>
-  <h2>Your Posts</h2>
+  <!--<h2>Your Posts</h2>-->
   <ol>
     {{#each posts as |post|}}
     <li>
@@ -25,5 +27,7 @@
   </ol>
 </section>
 {{/if}}
+--}}
+{{log postData}}
 
 <script src="./javascript/create-post.js"></script>
