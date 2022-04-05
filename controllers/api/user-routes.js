@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const {
-    User,
-    Post,
-    Comment
+    user,
+    posts,
+    comment
 } = require('../../models');
-
+/*  we currently dont have the handlebar to display specific users
 // Get all users
 router.get('/', (req, res) => {
-    User.findAll({
+    user.findAll({
             attributes: {
                 exclude: ['password']
             }
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 // Get specific user
 router.get('/:id', (req, res) => {
-    User.findOne({
+    user.findOne({
             attributes: {
                 exclude: ['password']
             },
@@ -29,14 +29,14 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
-                    model: Post,
+                    model: posts,
                     attributes: ['id', 'title', 'content', 'created_at']
                 },
                 {
-                    model: Comment,
+                    model: comment,
                     attributes: ['id', 'comment_text', 'created_at'],
                     include: {
-                        model: Post,
+                        model: posts,
                         attributes: ['title']
                     }
                 }
@@ -56,12 +56,13 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+*/
 // Create a user
 router.post('/', (req, res) => {
-    User.create({
+    user.create({
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            email:req.body.email
         })
         .then(dbUserData => {
             req.session.save(() => {
@@ -69,7 +70,7 @@ router.post('/', (req, res) => {
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
 
-                res.json(dbUserData);
+                res.status(200).json(dbUserData);
             });
         })
         .catch(err => {
@@ -77,11 +78,36 @@ router.post('/', (req, res) => {
             res.status(500).json(err);
         });
 })
-
+router.post("/login",async(req,res)=>{
+    try{
+        const dbUserData = await user.findOne({
+            where:{
+                username:req.body.username
+            }
+        });
+        if (!dbUserData){
+            res.status(400).json({message:"incorrect username or password"})
+            return;
+        }
+        const validpassword = await dbUserData.checkPassword(req.body.password)
+        if (!validpassword){
+            res.status(400).json({message:"incorrect username or password"})
+        }
+        req.session.save(()=>{
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+            res.status(200).json({user:dbUserData,message:"logged in"})
+        })
+    }catch(err){
+        err ? res.status(500).json(err):console.log("successfully created user")
+    }
+})
+/* improved login function above
 router.post('/login', (req, res) => {
-    User.findOne({
+    user.findOne({
             where: {
-                username: req.body.username
+                email: req.body.email
             }
         })
         .then(dbUserData => {
@@ -124,7 +150,7 @@ router.post('/login', (req, res) => {
             });
         });
 });
-
+*/
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
