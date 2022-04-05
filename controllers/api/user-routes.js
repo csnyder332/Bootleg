@@ -91,16 +91,18 @@ router.post("/login",async(req,res)=>{
     try{
         const dbUserData = await user.findOne({
             where:{
-                username:req.body.username
+                email:req.body.email
             }
         });
         if (!dbUserData){
-            res.status(400).json({message:"incorrect username or password"})
+            console.log("there is no user that exist with that email");
+            res.status(400).json({message:"incorrect email or password"})
             return;
         }
         const validpassword = await dbUserData.checkPassword(req.body.password)
         if (!validpassword){
-            res.status(400).json({message:"incorrect username or password"})
+            console.log("wrong password");
+            res.status(400).json({message:"incorrect email or password"})
         }
         req.session.save(()=>{
             req.session.user_id = dbUserData.id;
@@ -109,6 +111,7 @@ router.post("/login",async(req,res)=>{
             res.status(200).json({user:dbUserData,message:"logged in"})
         })
     }catch(err){
+        console.log(err);
         err ? res.status(500).json(err):console.log("successfully created user")
     }
 })
