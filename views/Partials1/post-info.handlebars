@@ -8,4 +8,12 @@
     |
     <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
   </div>
+
+  <div class="row">
+    <div class="photo-container">
+    <img src="{{image}}" class="photo" alt="{{user}}">
+    <div class="timestamp" data-livestamp="{{created_time}}">{{human_time created_time}}</div>
+    <div class="caption">{{caption}}</div>
+  </div>
+  
 </article>
