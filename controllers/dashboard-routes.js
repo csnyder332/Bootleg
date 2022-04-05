@@ -1,44 +1,38 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {
-    Post,
-    User,
-    Comment
+    posts,
+    user,
+    comment
 } = require('../models');
 const withAuth = require('../utils/auth');
 
 
 router.get('/', withAuth, (req, res) => {
-    Post.findAll({
+    posts.findAll({
             where: {
                 user_id: req.session.user_id
             },
-            attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
-            ],
             include: [{
                     model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include: {
-                        model: User,
+                        model: user,
                         attributes: ['username']
                     }
                 },
                 {
-                    model: User,
+                    model: user,
                     attributes: ['username']
                 }
             ]
         })
         .then(dbPostData => {
-            const posts = dbPostData.map(post => post.get({
+            const postData = dbPostData.map(post => post.get({
                 plain: true
             }));
+            console.log("postData: "+postData);
             res.render('dashboard', {
-                posts,
+                postData,
                 loggedIn: true
             });
         })
@@ -47,9 +41,9 @@ router.get('/', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
-
+/*  we might not need this if we are going to change the caption to a textarea instead
 router.get('/edit/:id', withAuth, (req, res) => {
-    Post.findOne({
+    posts.findOne({
             where: {
                 id: req.params.id
             },
@@ -95,11 +89,12 @@ router.get('/edit/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 })
-
+*/
+/* might not need this if we are going to add a form to the top of the dashboard to make a post
 router.get('/new', (req, res) => {
     res.render('add-post', {
         loggedIn: true
     })
 })
-
+*/
 module.exports = router;
