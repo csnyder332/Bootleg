@@ -4,22 +4,22 @@ const Likes = [
     {
         user_id: '1',
         comment_id: '',
-        post_id: 'test'
+        post_id: ''
+    },
+    {
+        user_id: '2',
+        comment_id: '',
+        post_id: ''
     },
     {
         user_id: '1',
         comment_id: '',
-        post_id: 'test'
+        
     },
     {
-        user_id: '1',
+        user_id: '2',
         comment_id: '',
-        post_id: 'test'
-    },
-    {
-        user_id: '1',
-        comment_id: '',
-        post_id: 'test'
+        
     },
 ];
 
