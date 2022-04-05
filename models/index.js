@@ -1,7 +1,7 @@
 const user = require('./user');
 const posts = require('./posts');
 const comment=require("./comment")
-const likes=require("./likes")
+const likes=require("../[DEPRECATED WORK]/likes")
 user.hasMany(posts, {
   foreignKey: 'user_id',
 });
@@ -15,18 +15,22 @@ posts.hasMany(comment,{
 comment.belongsTo(posts,{
   foreignKey:"post_id"
 })
+/*
 likes.belongsTo(posts,{
   foreignKey:"post_id"
 })
+*/
 posts.hasOne(posts,{
   foreignKey:"post_id"
 })
+/*
 likes.belongsTo(comment,{
   foreignKey:"comment_id"
 })
 comment.hasOne(likes,{
   foreignKey:"comment_id"
 })
+*/
 user.hasMany(comment,{
   foreignKey:"user_id"
 })

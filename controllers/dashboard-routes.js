@@ -7,7 +7,7 @@ const {
 } = require('../models');
 const withAuth = require('../utils/auth');
 
-
+//Get all images
 router.get('/', withAuth, (req, res) => {
     posts.findAll({
             where: {

@@ -11,16 +11,6 @@ const likesdata = [
         comment_id: '',
         post_id: ''
     },
-    {
-        user_id: '1',
-        comment_id: '',
-        
-    },
-    {
-        user_id: '2',
-        comment_id: '',
-        
-    },
 ];
 
 const LikePosts = () => likes.bulkCreate(likesdata);
