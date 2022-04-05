@@ -28,6 +28,17 @@
 </section>
 {{/if}}
 --}}
+{{log "postData"}}
 {{log postData}}
-
-<script src="./javascript/create-post.js"></script>
+<section>
+  <ol>
+    {{#each postData as |post|}}
+    {{log post}}
+    <li>
+      <a href={{image_url}}>
+      <img src={{concat "./images/" image_url}}> 
+      </a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
