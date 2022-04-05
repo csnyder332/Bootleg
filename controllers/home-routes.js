@@ -1,41 +1,34 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
+//const sequelize = require('../config/connection'); this wasnt doing anything
 const {
-    User,
-    Post,
-    Comment
+    user,
+    posts,
+    comment
 } = require('../models');
 
 
 router.get('/', (req, res) => {
-    Post.findAll({
-            attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
-            ],
+    posts.findAll({
             include: [{
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    model: comment,
                     include: {
-                        model: User,
-                        attributes: ['username']
+                        model: user,
+                        attributes: ['username',"id"]
                     }
                 },
                 {
-                    model: User,
+                    model: user,//uses the user_id in posts to convert user_id to username
                     attributes: ['username']
                 }
             ]
         })
         .then(dbPostData => {
-            const posts = dbPostData.map(post => post.get({
+            const postdata = dbPostData.map(post => post.get({
                 plain: true
             }));
-
+            console.log("Post data after filtering: "+postdata);
             res.render('homepage', {
-                posts,
+                postdata,
                 loggedIn: req.session.loggedIn
             });
         })
@@ -44,9 +37,9 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+/* this should be in api/post
 router.get('/post/:id', (req, res) => {
-    Post.findOne({
+    posts.findOne({
             where: {
                 id: req.params.id
             },
@@ -60,12 +53,12 @@ router.get('/post/:id', (req, res) => {
                     model: Comment,
                     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include: {
-                        model: User,
+                        model: user,
                         attributes: ['username']
                     }
                 },
                 {
-                    model: User,
+                    model: user,
                     attributes: ['username']
                 }
             ]
@@ -92,7 +85,7 @@ router.get('/post/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+*/
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');

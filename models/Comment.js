@@ -1,27 +1,24 @@
-const {
-    Model,
-    DataTypes
-} = require('sequelize');
+const {Model,DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-class Comment extends Model {}
+class comment extends Model {}
 
-Comment.init({
+comment.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
-    comment_text: {
+    content: {//the comment data to display to users
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
             len: [1]
         }
     },
-    user_id: {
+    user_id: {//the user id of whoever posted said comment. used to display their name next to their comment
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -29,20 +26,19 @@ Comment.init({
             key: 'id'
         }
     },
-    post_id: {
+    post_id: {//a place where the comment should be found. 
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'post',
+            model: 'posts',
             key: 'id'
         }
     }
 }, {
     sequelize,
     freezeTableName: true,
-    underscored: true,
     modelName: 'comment'
 })
 
 
-module.exports = Comment;
+module.exports = comment;

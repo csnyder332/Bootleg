@@ -11,15 +11,15 @@ posts.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    image_url: {
+    image_url: {//the UUID of the post
       type: DataTypes.STRING,
       allowNull: false,
     },
-    caption: {
+    caption: {//The top/bottom text to display with the image
       type: DataTypes.STRING,
       allowNull: true,
     },
-    user_id:{
+    user_id:{//used to display the username alongside the post
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

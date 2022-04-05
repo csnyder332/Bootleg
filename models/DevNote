@@ -1,0 +1,14 @@
+/////// likes.js //////
+purpose: database model for counting the number of likes for a referenced media. Ie, if the media is a comment, then the 
+model will track the media via foreign key reference. Then, it will track the user ids of every user liking said media.
+Simply grab the like counter via media id, and search for the user in question when creating logic for liking/unliking a post/comment
+
+/////// index.js //////
+Used for assigning foreign keys between models/tables
+
+/////// posts.js /////
+tracks the UUID of the post made along with the user who posted it and their caption
+
+////// comment.js /////
+tracks the post_id, user_id, and content for commentating. use the post_id to stitch the content to the post. then use the user_id
+to attach the username to the comment

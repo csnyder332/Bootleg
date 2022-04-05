@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const {
-    User,
-    Post,
-    Comment
+    user,
+    posts,
+    comment
 } = require('../../models');
-
+/*  we currently dont have the handlebar to display specific users
 // Get all users
 router.get('/', (req, res) => {
-    User.findAll({
+    user.findAll({
             attributes: {
                 exclude: ['password']
             }
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 // Get specific user
 router.get('/:id', (req, res) => {
-    User.findOne({
+    user.findOne({
             attributes: {
                 exclude: ['password']
             },
@@ -29,14 +29,14 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
-                    model: Post,
+                    model: posts,
                     attributes: ['id', 'title', 'content', 'created_at']
                 },
                 {
-                    model: Comment,
+                    model: comment,
                     attributes: ['id', 'comment_text', 'created_at'],
                     include: {
-                        model: Post,
+                        model: posts,
                         attributes: ['title']
                     }
                 }
@@ -56,12 +56,13 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+*/
 // Create a user
 router.post('/', (req, res) => {
-    User.create({
+    user.create({
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            email:req.body.email
         })
         .then(dbUserData => {
             req.session.save(() => {
@@ -79,7 +80,7 @@ router.post('/', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    User.findOne({
+    user.findOne({
             where: {
                 username: req.body.username
             }
