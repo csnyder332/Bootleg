@@ -6,7 +6,7 @@ const seedAll = async () => {
   await sequelize.sync({ force: true });
 
   await seedPost();
-  await seedLike();
+  //await seedLike();
   await seedUser();
 
   process.exit(0);
