@@ -13,9 +13,6 @@
   "keywords": [],
   "author": "C Snyder",
   "license": "ISC",
-  "bugs": {
-
-  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.3",
