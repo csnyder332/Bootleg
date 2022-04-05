@@ -1,3 +1,6 @@
+/*
+ the purpose of this route is to create comments and delete them. 
+ */
 const router = require('express').Router();
 const {
     user,
@@ -5,12 +8,6 @@ const {
     comment
 } = require('../../models');
 const withAuth = require('../../utils/auth');
-
-//Improved get all comments for specific post
-router.get("/",(req,res)=>{
-    
-})
-
 /*
 //Get all comments
 router.get("/", (req, res) => {
@@ -22,6 +19,20 @@ router.get("/", (req, res) => {
         });
 });
 */
+//Delete a comment
+router.delete("/",async (req,res)=>{
+    try{
+        replies.destroy({
+            where:{
+                id:req.body.id
+            }
+        })
+        res.status(200).json()
+    }catch(err){
+        res.status(500).json(err)
+    }
+});
+
 //Create a comment
 router.post('/', withAuth, (req, res) => {
     if (req.session) {
