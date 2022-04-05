@@ -1,7 +1,7 @@
 const user = require('./user');
 const posts = require('./posts');
 const comment=require("./comment")
-const likes=require("../[DEPRECATED WORK]/likes")
+//const likes=require("../[DEPRECATED WORK]/likes")
 user.hasMany(posts, {
   foreignKey: 'user_id',
 });
@@ -33,4 +33,4 @@ likes.belongsTo(posts,{
 */
 
 
-module.exports = { user, posts,comment,likes};
+module.exports = { user, posts,comment};
