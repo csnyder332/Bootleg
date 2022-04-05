@@ -1,6 +1,6 @@
 const { likes } = require('../models');
 
-const Likes = [
+const likesdata = [
     {
         user_id: '1',
         comment_id: '',
@@ -23,6 +23,6 @@ const Likes = [
     },
 ];
 
-const LikePosts = () => Likes.bulkCreate(likesdata);
+const LikePosts = () => likes.bulkCreate(likesdata);
 
 module.exports = LikePosts;
