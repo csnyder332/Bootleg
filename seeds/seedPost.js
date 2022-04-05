@@ -3,8 +3,7 @@ const { posts } = require('../models');
 const postdata = [
   {
     image_url: '3c61407b-9bdf-4791-bd07-cb11deb97806',
-    caption:
-      'This is me, programming',
+    caption:'This is me, programming',
     user_id: 1
   }
 ];

@@ -5,7 +5,6 @@ const likes=require("../[DEPRECATED WORK]/likes")
 user.hasMany(posts, {
   foreignKey: 'user_id',
 });
-
 posts.belongsTo(user, {
   foreignKey: 'user_id',
 });
@@ -15,13 +14,11 @@ posts.hasMany(comment,{
 comment.belongsTo(posts,{
   foreignKey:"post_id"
 })
-/*
-likes.belongsTo(posts,{
-  foreignKey:"post_id"
+user.hasMany(comment,{
+  foreignKey:"user_id"
 })
-*/
-posts.hasOne(posts,{
-  foreignKey:"post_id"
+comment.belongsTo(user,{
+  foreignKey:"user_id"
 })
 /*
 likes.belongsTo(comment,{
@@ -30,11 +27,10 @@ likes.belongsTo(comment,{
 comment.hasOne(likes,{
   foreignKey:"comment_id"
 })
+likes.belongsTo(posts,{
+  foreignKey:"post_id"
+})
 */
-user.hasMany(comment,{
-  foreignKey:"user_id"
-})
-comment.belongsTo(user,{
-  foreignKey:"user_id"
-})
+
+
 module.exports = { user, posts,comment,likes};
