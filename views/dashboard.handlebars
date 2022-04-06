@@ -39,3 +39,13 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
     {{/each}}
   </ol>
 </section>
+<section>
+  <h2>Delete Post</h2>
+  <form class="delete-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
+    <div>
+      <label for="delete-post">Title</label>
+      <input type="text" id="delete-post" name="delete-post" />
+      <input type="submit" class="btn" value="Delete"/>
+    </div>
+  </form>
+</section>
