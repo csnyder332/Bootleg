@@ -4,6 +4,8 @@ const withAuth = require("../../utils/auth");
 const posts=require("../../models/posts")
 const upload=require("../../utils/multerMiddleware")
 const { v4: uuidv4 } = require('uuid');
+
+//create post
 router.post("/",withAuth, upload.single('image'),async (req,res)=>{
     try{
         const UUID =uuidv4();
@@ -17,6 +19,7 @@ router.post("/",withAuth, upload.single('image'),async (req,res)=>{
         })
         .toFile(imagePath);
         console.log(imagePath);
+        console.log("user id: "+req.session.user_id);
         posts.create(
             {
                 image_url:UUID+".png",
@@ -29,5 +32,4 @@ router.post("/",withAuth, upload.single('image'),async (req,res)=>{
         res.json(err)
     }
 });
-
 module.exports=router

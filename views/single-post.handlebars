@@ -1,8 +1,26 @@
-<a href="/dashboard" class="go-back"> &larr; Back to dashboard</a>
+<a href="/" class="go-back"> &larr; Back to dashboard</a>
 <br>
 <br>
+<!--
 
-{{> post-info post}}
+    structure: 
+
+    [USERNAME]                           [DATE POSTED]
+
+    [IMG]
+
+
+    [FORM FOR COMMENTATING] (like facebook)
+
+    [COMMENT 1]
+    [user who made comment]
+    [COMMENT 2]
+    [user who made comment]
+    [COMMENT 3]
+    [user who made comment]
+    ETC
+-->
+
 
 {{#if loggedIn}}
 <form class="comment-form">
@@ -17,7 +35,3 @@
 {{/if}}
 
 {{> comments post.comments}}
-
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-{{/if}}

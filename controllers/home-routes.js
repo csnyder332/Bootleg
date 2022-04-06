@@ -112,8 +112,19 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+//display single post
+router.get("/post/:uuid",async(req,res)=>{
+    try{
+        res.render("single-post",{
+            uuid: req.params.uuid
+        })
+    }catch(err){
+        res.status(500)
+    }
+})
 
 router.get('*', (req, res) => {
+    console.log(req.params);
     res.status(404).send("Can't go there!");
     // res.redirect('/');
 })
