@@ -7,9 +7,8 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
 {{#if loggedIn}}
 <section>
   <h2>Create New Post</h2>
-  <form class="new-post-form" <!-- action="./api/posts" method="POST" enctype="multipart/form-data"-->>
-    <label for="caption">Title</label>
-    <input type="text" id="caption" name="caption"/>
+  <form class="new-post-form" <!-- action="./api/posts" method="POST" enctype="multipart/form-data"-->
+    <input type="text" placeholder="Caption" id="caption" name="caption"/>
     <label for="image-input">Link</label>
     <input required accept="image/*"  type="file" id="image-input" name="image_input" />
     <input type="submit" class="btn" value="Upload"/>
@@ -17,8 +16,8 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
 </section>
 <script src="./javascript/add-post.js"></script>
 {{/if}}
-<section>
-  <ol>
+<section class="post-container">
+  <ul>
     {{#each postData as |post|}}
     <li>
       <!--this is what the info looks like.
@@ -28,12 +27,26 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
       image_url is the uuid.png of the image to display. all images are stored in public/images
       caption is the caption for the post. can be optionally empty
       -->
-      <div>{{user.username}}</div>
-      <a href={{concat "/post/" image_url}}>
-      <img src={{concat "./images/" image_url}}> 
+      <div class="username-post">{{user.username}}</div>
+      <div class="img-post">
+        <a href={{concat "/post/" image_url}}>
+        <img src={{concat "./images/" image_url}}>
+      </div>
       <h5>{{caption}}</h5>
       </a>
     </li>
     {{/each}}
-  </ol>
+  </ul>
 </section>
+<!-- Will only be available if logged in -->
+{{#if loggedIn}}
+  <section>
+    <h2>Delete Post</h2>
+    <form class="delete-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
+      <div>
+        <input type="text" id="delete-post"  placeholder="Title" name="delete-post" />
+        <input type="submit" class="btn" value="Delete"/>
+      </div>
+    </form>
+  </section>
+{{/if}}

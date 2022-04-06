@@ -5,28 +5,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bootleg</title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+  
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
+  <header class="main-header">
       <h1>
+        
         <a href="/">Bootleg</a>
       </h1>
-      <nav>
         {{#if loggedIn}}
         <a href="/">home</a>
         <button id="logout" class="btn-no-style">logout</button>
         {{else}}
-        <a href="/login">login</a>
+        <h1>
+          <a href="/login" class="not-login">Login</a>
+        </h1>
         {{/if}}
-      </nav>
-    </header>
-    <main>
+  </header>
+  <main>
       {{{ body }}}
-    </main>
-  </div>
+  </main>
 
   {{#if loggedIn}}
 <script src="./javascript/log-out.js"></script>
