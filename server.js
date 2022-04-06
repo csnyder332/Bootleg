@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
-
+const fileUpload=require("express-fileupload")
+const bodyParser = require("body-parser")
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
@@ -30,15 +31,14 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(session(sess));
+app.use(fileUpload())
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(routes);
 
 sequelize.sync();
 
-app.listen(PORT, () => {
-    console.log(`Listening port ${PORT}!`);
-});
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`Now listening`));
+  });
