@@ -1,25 +1,20 @@
-/*async function newFormHandler(event) {
+async function newFormHandler(event) {
     event.preventDefault();
-
-    const title = document.querySelector('input[name="post-title"]').value;
-    const post_content = document.querySelector('textarea[name="post-content"]').value.trim();
-
+    const file = event.target[1].files[0]
+    const caption=document.querySelector('input[name="caption"]').value.trim();
+    const formData = new FormData()
+    //formData.append("image_input",file)
+    formData.append("caption",caption)
     const response = await fetch(`/api/posts`, {
         method: 'POST',
-        body: JSON.stringify({
-            title,
-            post_content
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        body: formData
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard');
+        //document.location.replace('/');
     } else {
         alert(response.statusText);
     }
 }
 
-document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);*/
+document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
