@@ -1,8 +1,6 @@
-<a href="/dashboard" class="go-back"> &larr; Back to dashboard</a>
+<a href="/views/dashboard.handlebars" class="go-back"> &larr; Back to dashboard</a>
 <br>
 <br>
-
-{{> post-info post}}
 
 {{#if loggedIn}}
 <form class="comment-form">
@@ -11,13 +9,21 @@
     </div>
 
     <div>
+        <ol class="post-list">
+            {{#each posts as |post|}}
+            <li>
+                {{> post-info post }}
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+
+    <div>
         <button type="submit">add comment</button>
     </div>
 </form>
 {{/if}}
 
-{{> comments post.comments}}
-
 {{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
+<script src="/public/javascript/comment.js"></script>
 {{/if}}
