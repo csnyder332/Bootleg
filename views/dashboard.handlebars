@@ -7,21 +7,19 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
 {{#if loggedIn}}
 <section>
   <h2>Create New Post</h2>
-  <form class="new-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
-    </div>
+  <form class="new-post-form" <!-- action="./api/posts" method="POST" enctype="multipart/form-data"-->>
+    <label for="caption">Title</label>
+    <input type="text" id="caption" name="caption"/>
     <label for="image-input">Link</label>
     <input required accept="image/*"  type="file" id="image-input" name="image_input" />
     <input type="submit" class="btn" value="Upload"/>
   </form>
 </section>
+<script src="./javascript/add-post.js"></script>
 {{/if}}
 <section>
   <ol>
     {{#each postData as |post|}}
-    {{log post}}
     <li>
       <!--this is what the info looks like.
       user.username is the user who created the post
@@ -38,14 +36,4 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
     </li>
     {{/each}}
   </ol>
-</section>
-<section>
-  <h2>Delete Post</h2>
-  <form class="delete-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
-    <div>
-      <label for="delete-post">Title</label>
-      <input type="text" id="delete-post" name="delete-post" />
-      <input type="submit" class="btn" value="Delete"/>
-    </div>
-  </form>
 </section>
