@@ -7,7 +7,7 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
 {{#if loggedIn}}
 <section>
   <h2>Create New Post</h2>
-  <form class="new-post-form" <!-- action="./api/posts" method="POST" enctype="multipart/form-data"-->
+  <form class="new-post-form" <!-- action="/api/posts" method="POST" enctype="multipart/form-data"-->>
     <input type="text" placeholder="Caption" id="caption" name="caption"/>
     <label for="image-input">Link</label>
     <input required accept="image/*"  type="file" id="image-input" name="image_input" />

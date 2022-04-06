@@ -13,22 +13,24 @@ router.post("/",withAuth, upload.single('image'),async (req,res)=>{
         const UUID =uuidv4();
         const imagePath=__dirname+"../../../public/images/"+UUID+".png"
         console.log("imagePath:"+imagePath);
+        console.log(req.files);
+        console.log(req.body);
         sharp(req.files.image_input.data)
         .resize(20, 20, {
           fit: sharp.fit.inside,
           withoutEnlargement: true
         })
         .toFile(imagePath);
-        console.log(imagePath);
         posts.create(
             {
                 image_url:UUID+".png",
-                caption:req.body.caption,
+                caption:req.files.image_input.name,
                 user_id:req.session.user_id
             }
         )
         res.redirect("/")
     }catch(err){
+        console.log(err);
         res.json(err)
     }
 });
