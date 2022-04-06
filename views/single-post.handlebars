@@ -1,9 +1,40 @@
+<<<<<<< HEAD
+<a href="/views/dashboard.handlebars" class="go-back"> &larr; Back to dashboard</a>
+=======
 <a href="/" class="go-back"> &larr; Back to homepage</a>
+>>>>>>> 03659a0621459b905fc1911b9f4ddcd517627a15
 <br>
 <br>
 <!--
     structure: 
 
+<<<<<<< HEAD
+{{#if loggedIn}}
+<form class="comment-form">
+    <div>
+        <textarea name="comment-body"></textarea>
+    </div>
+
+    <div>
+        <ol class="post-list">
+            {{#each posts as |post|}}
+            <li>
+                {{> post-info post }}
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+
+    <div>
+        <button type="submit">add comment</button>
+    </div>
+</form>
+{{/if}}
+
+{{#if loggedIn}}
+<script src="/public/javascript/comment.js"></script>
+{{/if}}
+=======
     [USERNAME]                           [DATE POSTED]
 
     [IMG]
@@ -40,3 +71,4 @@ feel free to use a partial to really detail this.
 <div>{{content}}</div>
 {{/each}}
 <script src="../javascript/comment.js"></script>
+>>>>>>> 03659a0621459b905fc1911b9f4ddcd517627a15
