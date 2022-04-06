@@ -5,7 +5,7 @@ body {
     letter-spacing: 4px;
 }
 .container {
-    margin: 50px 400px 0;
+    margin: 50px 400px;
     border: solid 2px black;
     box-shadow: 10px 10px;
     border-radius: 35px;
@@ -13,7 +13,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    height: 70vh;
+    height: 50vh;
 }
 
 a {
@@ -27,7 +27,7 @@ a {
     justify-content: space-between;
 }
 
-/* FORM STYLES */
+/* LOGIN/OUT FORM STYLES */
 
 .login-form, .signup-form {
     line-height: 40px;
@@ -51,8 +51,46 @@ button[type=submit] {
 }
 
 
+/* POST STYLES */
+
+ul {
+    list-style-type: none;
+}
+/*.post-container {
+    margin: 50px 300px 0;
+    border: 2px red solid;
+    height: 70vh;
+}*/
+ul {
+    display: flex;
+    padding-left: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.username-post {
+    border: 2px black solid;
+    font-size: 2rem;
+    text-align: left;
+    padding-left: 10px;
+  
+}
+.img-post {
+    margin-top: 1px;
+    height: 12vh;
+    width: 35vw;
+}
+img {
+    height: auto;
+}
+
+
+
 @media screen and (max-width: 580px) {
-    .container {
+    .container, .post-container {
         margin: 0
+    }
+    .username-post {
+        font-size: 4.5vw;
     }
 }

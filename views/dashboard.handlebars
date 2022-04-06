@@ -21,8 +21,8 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
   </div>
 </section>
 {{/if}}
-<section>
-  <ol>
+<section class="post-container">
+  <ul>
     {{#each postData as |post|}}
     {{log post}}
     <li>
@@ -33,22 +33,27 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
       image_url is the uuid.png of the image to display. all images are stored in public/images
       caption is the caption for the post. can be optionally empty
       -->
-      <div>{{user.username}}</div>
-      <a href={{concat "/post/" image_url}}>
-      <img src={{concat "./images/" image_url}}> 
+      <div class="username-post">{{user.username}}</div>
+      <div class="img-post">
+        <a href={{concat "/post/" image_url}}>
+        <img src={{concat "./images/" image_url}}>
+      </div>
       <h5>{{caption}}</h5>
       </a>
     </li>
     {{/each}}
-  </ol>
+  </ul>
 </section>
-<section>
-  <h2>Delete Post</h2>
-  <form class="delete-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
-    <div>
-      <label for="delete-post">Title</label>
-      <input type="text" id="delete-post" name="delete-post" />
-      <input type="submit" class="btn" value="Delete"/>
-    </div>
-  </form>
-</section>
+<!-- Will only be available if logged in -->
+{{#if loggedIn}}
+  <section>
+    <h2>Delete Post</h2>
+    <form class="delete-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
+      <div>
+        <label for="delete-post">Title</label>
+        <input type="text" id="delete-post" name="delete-post" />
+        <input type="submit" class="btn" value="Delete"/>
+      </div>
+    </form>
+  </section>
+{{/if}}
