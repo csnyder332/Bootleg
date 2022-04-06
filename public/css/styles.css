@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    margin: 20px 75px 0 55px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+}

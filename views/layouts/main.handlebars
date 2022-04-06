@@ -5,32 +5,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bootleg</title>
-  <link rel="stylesheet" type="text/css" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+ <!--- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
+  <header class="main-header">
       <h1>
-<<<<<<< HEAD
-        <a href="/">BOOTLEG</a>
-=======
+        
         <a href="/">Bootleg</a>
->>>>>>> b8bef00707ccfd502d986e64715983a6b4379640
       </h1>
-      <nav>
         {{#if loggedIn}}
         <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
+        <button id="logout" class="btn-no-style">Logout</button>
         {{else}}
-        <a href="/login">login</a>
+        <h1>
+          <a href="/login" class="not-login">Login</a>
+        </h1>
         {{/if}}
-      </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-  </div>
+  </header>
+  <main>
+    {{{ body }}}
+  </main>
 
   {{#if loggedIn}}
 <script src="./javascript/log-out.js"></script>
