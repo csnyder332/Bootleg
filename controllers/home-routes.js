@@ -115,10 +115,36 @@ router.get('/signup', (req, res) => {
 //display single post
 router.get("/post/:uuid",async(req,res)=>{
     try{
+        console.log(req.params.uuid);
+        const dbPostData= await posts.findAll({
+            where: {
+                image_url: req.params.uuid
+            },
+            include:[
+                {
+                    model:comment,
+                    include:[{
+                        model:user,
+                        attributes:["username","id"]
+                    }] 
+                },
+                {
+                    model:user,
+                    attributes:["username","id"]
+                }
+            ]
+        });
+        const postsMap = dbPostData.map((postsData)=>
+            postsData.get({plain:true})
+        );
+        console.log(postsMap[0]);
         res.render("single-post",{
+            loggedIn:req.session.loggedIn,
+            postData:postsMap[0],
             uuid: req.params.uuid
         })
     }catch(err){
+        console.log(err);
         res.status(500)
     }
 })
