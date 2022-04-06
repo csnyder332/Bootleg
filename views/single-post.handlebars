@@ -1,14 +1,12 @@
-<a href="/" class="go-back"> &larr; Back to dashboard</a>
+<a href="/" class="go-back"> &larr; Back to homepage</a>
 <br>
 <br>
 <!--
-
     structure: 
 
     [USERNAME]                           [DATE POSTED]
 
     [IMG]
-
 
     [FORM FOR COMMENTATING] (like facebook)
 
@@ -20,18 +18,27 @@
     [user who made comment]
     ETC
 -->
-
+{{log "postData:"}}
+{{log postData}}
+{{log "username:"}}
+{{log postData.user}}
+<div class="username">{{postData.user.username}}</div>
+<div>{{format_date postData.createdAt}}</div>
+<div>{{format_time postData.createdAt}}</div>
+<img src={{concat "../images/" uuid}}> 
 
 {{#if loggedIn}}
-<form class="comment-form">
-    <div>
-        <textarea name="comment-body"></textarea>
-    </div>
-
-    <div>
-        <button type="submit">add comment</button>
-    </div>
+<form class="comment-form"id={{postData.id}}>
+    <textarea name="blog-content" id="blog-content" cols="30" rows="5"></textarea>
+    <input value="Reply" type="submit">
 </form>
 {{/if}}
-
-{{> comments post.comments}}
+{{#each postData.comments}}
+{{log this}}
+{{log id}}
+<div>{{user.username}}</div>
+<div>{{format_date createdAt}}</div>
+<div>{{format_time createdAt}}</div>
+<div>{{content}}</div>
+{{/each}}
+<script src="../javascript/comment.js"></script>
