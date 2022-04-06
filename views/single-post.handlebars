@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <a href="/views/dashboard.handlebars" class="go-back"> &larr; Back to dashboard</a>
+=======
+<a href="/" class="go-back"> &larr; Back to homepage</a>
+>>>>>>> 03659a0621459b905fc1911b9f4ddcd517627a15
 <br>
 <br>
+<!--
+    structure: 
 
+<<<<<<< HEAD
 {{#if loggedIn}}
 <form class="comment-form">
     <div>
@@ -27,3 +34,41 @@
 {{#if loggedIn}}
 <script src="/public/javascript/comment.js"></script>
 {{/if}}
+=======
+    [USERNAME]                           [DATE POSTED]
+
+    [IMG]
+
+    [FORM FOR COMMENTATING] (like facebook)
+
+    [COMMENT 1]
+    [user who made comment]
+    [COMMENT 2]
+    [user who made comment]
+    [COMMENT 3]
+    [user who made comment]
+    ETC
+-->
+<!--This displays the username, image, time, and data of the post -->
+<div class="username">{{postData.user.username}}</div>
+<div>{{format_date postData.createdAt}}</div>
+<div>{{format_time postData.createdAt}}</div>
+<img src={{concat "../images/" uuid}}> 
+<!--This is a form only shown to those that are logged in. It allows them to comment -->
+{{#if loggedIn}}
+<form class="comment-form"id={{postData.id}}>
+    <textarea name="blog-content" id="blog-content" cols="30" rows="5"></textarea>
+    <input value="Reply" type="submit">
+</form>
+{{/if}}
+<!--This is a loop that spawns comments. I couldve used a partial, but I got very lazy.
+feel free to use a partial to really detail this. 
+-->
+{{#each postData.comments}}
+<div>{{user.username}}</div>
+<div>{{format_date createdAt}}</div>
+<div>{{format_time createdAt}}</div>
+<div>{{content}}</div>
+{{/each}}
+<script src="../javascript/comment.js"></script>
+>>>>>>> 03659a0621459b905fc1911b9f4ddcd517627a15

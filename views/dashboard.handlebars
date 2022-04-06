@@ -1,33 +1,41 @@
+{{!--
+This is the homepage. It will display all posts and descend downwards.
+It will only display the post and the user who created it. since all posts are hyperlinks,
+it will redirect the user to the /post/UUID route and display the single-post.handlears
+--}}
+<!--This will display only if the user is logged in-->
+{{#if loggedIn}}
 <section>
   <h2>Create New Post</h2>
-
-  <form class="new-post-form">
+  <form class="new-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
     <div>
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="post-title" />
     </div>
-
-    <div>
-      <label for="post-url">Link</label>
-      <input id="post-url" name="post-url" />
-    </div>
-    
-    <button type="submit" class="btn">Create</button>
+    <label for="image-input">Link</label>
+    <input required accept="image/*"  type="file" id="image-input" name="image_input" />
+    <input type="submit" class="btn" value="Upload"/>
   </form>
 </section>
-
-{{#if posts.length}}
+{{/if}}
 <section>
-  <h2>Your Posts</h2>
   <ol>
-    {{#each posts as |post|}}
+    {{#each postData as |post|}}
+    {{log post}}
     <li>
-      {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <!--this is what the info looks like.
+      user.username is the user who created the post
+      concat is a helper i made that returns the 2 given parameters in a concat state
+      the link is /post/UUID, and once redirected, it will display the details of the post
+      image_url is the uuid.png of the image to display. all images are stored in public/images
+      caption is the caption for the post. can be optionally empty
+      -->
+      <div>{{user.username}}</div>
+      <a href={{concat "/post/" image_url}}>
+      <img src={{concat "./images/" image_url}}> 
+      <h5>{{caption}}</h5>
+      </a>
     </li>
     {{/each}}
   </ol>
 </section>
-{{/if}}
-
-<script src="/public/javascript/add-post.js"></script>

@@ -16,10 +16,10 @@
       </h1>
       <nav>
         {{#if loggedIn}}
-        <a href="/views/dashboard.handlebars">dashboard</a>
+        <a href="/">home</a>
         <button id="logout" class="btn-no-style">logout</button>
         {{else}}
-        <a href="/views/login.handlebars">login</a>
+        <a href="/login">login</a>
         {{/if}}
       </nav>
     </header>
@@ -29,9 +29,9 @@
   </div>
 
   {{#if loggedIn}}
-  <script src="/public/javascript/login.js"></script>
+<script src="./javascript/log-out.js"></script>
   {{/if}}
-
+<script src="./javascript/login.js"></script>
 </body>
 
 </html>

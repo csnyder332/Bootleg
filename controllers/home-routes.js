@@ -1,12 +1,13 @@
 const router = require('express').Router();
-//const sequelize = require('../config/connection'); this wasnt doing anything
+const sequelize = require('../config/connection');
 const {
-    user,
     posts,
+    user,
     comment
 } = require('../models');
+const withAuth = require('../utils/auth');
 
-
+//Get all images
 router.get('/', (req, res) => {
     posts.findAll({
             include: [{
@@ -17,18 +18,19 @@ router.get('/', (req, res) => {
                     }
                 },
                 {
-                    model: user,//uses the user_id in posts to convert user_id to username
+                    model: user,
                     attributes: ['username']
                 }
             ]
         })
         .then(dbPostData => {
-            const postdata = dbPostData.map(post => post.get({
+            const postData = dbPostData.map(post => post.get({
                 plain: true
             }));
-            console.log("Post data after filtering: "+postdata);
+            console.log("postData: ");
+            console.log(postData);
             res.render('dashboard', {
-                postdata,
+                postData,
                 loggedIn: req.session.loggedIn
             });
         })
@@ -37,8 +39,8 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
-/* this should be in api/post
-router.get('/post/:id', (req, res) => {
+/*  we might not need this if we are going to change the caption to a textarea instead
+router.get('/edit/:id', withAuth, (req, res) => {
     posts.findOne({
             where: {
                 id: req.params.id
@@ -53,12 +55,12 @@ router.get('/post/:id', (req, res) => {
                     model: Comment,
                     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include: {
-                        model: user,
+                        model: User,
                         attributes: ['username']
                     }
                 },
                 {
-                    model: user,
+                    model: User,
                     attributes: ['username']
                 }
             ]
@@ -75,23 +77,29 @@ router.get('/post/:id', (req, res) => {
                 plain: true
             });
 
-            res.render('single-post', {
+            res.render('edit-post', {
                 post,
-                loggedIn: req.session.loggedIn
+                loggedIn: true
             });
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
-});
+})
+*/
+/* might not need this if we are going to add a form to the top of the dashboard to make a post
+router.get('/new', (req, res) => {
+    res.render('add-post', {
+        loggedIn: true
+    })
+})
 */
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
-
     res.render('login');
 });
 
@@ -104,11 +112,46 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+//display single post
+router.get("/post/:uuid",async(req,res)=>{
+    try{
+        console.log(req.params.uuid);
+        const dbPostData= await posts.findAll({
+            where: {
+                image_url: req.params.uuid
+            },
+            include:[
+                {
+                    model:comment,
+                    include:[{
+                        model:user,
+                        attributes:["username","id"]
+                    }] 
+                },
+                {
+                    model:user,
+                    attributes:["username","id"]
+                }
+            ]
+        });
+        const postsMap = dbPostData.map((postsData)=>
+            postsData.get({plain:true})
+        );
+        console.log(postsMap[0]);
+        res.render("single-post",{
+            loggedIn:req.session.loggedIn,
+            postData:postsMap[0],
+            uuid: req.params.uuid
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500)
+    }
+})
 
 router.get('*', (req, res) => {
+    console.log(req.params);
     res.status(404).send("Can't go there!");
     // res.redirect('/');
 })
-
-
 module.exports = router;
