@@ -3,15 +3,15 @@ async function newFormHandler(event) {
     const file = event.target[1].files[0]
     const caption=document.querySelector('input[name="caption"]').value.trim();
     const formData = new FormData()
-    //formData.append("image_input",file)
     formData.append("caption",caption)
+    formData.append("image_input",file)
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: formData
     });
 
     if (response.ok) {
-        //document.location.replace('/');
+        document.location.replace('/');
     } else {
         alert(response.statusText);
     }
