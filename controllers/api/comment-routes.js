@@ -11,13 +11,14 @@ const withAuth = require('../../utils/auth');
 //Delete a comment
 router.delete("/",async (req,res)=>{
     try{
-        replies.destroy({
+        comment.destroy({
             where:{
                 id:req.body.id
             }
         })
         res.status(200).json()
     }catch(err){
+        console.log(err);
         res.status(500).json(err)
     }
 });

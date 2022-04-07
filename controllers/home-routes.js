@@ -39,62 +39,6 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
-/*  we might not need this if we are going to change the caption to a textarea instead
-router.get('/edit/:id', withAuth, (req, res) => {
-    posts.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
-            ],
-            include: [{
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-                    include: {
-                        model: User,
-                        attributes: ['username']
-                    }
-                },
-                {
-                    model: User,
-                    attributes: ['username']
-                }
-            ]
-        })
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({
-                    message: 'No post found with this id'
-                });
-                return;
-            }
-
-            const post = dbPostData.get({
-                plain: true
-            });
-
-            res.render('edit-post', {
-                post,
-                loggedIn: true
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-})
-*/
-/* might not need this if we are going to add a form to the top of the dashboard to make a post
-router.get('/new', (req, res) => {
-    res.render('add-post', {
-        loggedIn: true
-    })
-})
-*/
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -134,14 +78,22 @@ router.get("/post/:uuid",async(req,res)=>{
                 }
             ]
         });
-        const postsMap = dbPostData.map((postsData)=>
+        var postsMap = dbPostData.map((postsData)=>
             postsData.get({plain:true})
         );
-        console.log(postsMap[0]);
+        postsMap=postsMap[0]
+        if (req.session.user_id) {
+            for (let key in postsMap["comments"]) {
+                postsMap["comments"][key]["userLoggedIn"]=req.session.user_id
+            }
+        }
+        console.log("postsMap");
+        console.log(postsMap);
         res.render("single-post",{
             loggedIn:req.session.loggedIn,
-            postData:postsMap[0],
-            uuid: req.params.uuid
+            postData:postsMap,
+            userLoggedIn:req.session.user_id,
+            uuid: req.params.uuid,
         })
     }catch(err){
         console.log(err);

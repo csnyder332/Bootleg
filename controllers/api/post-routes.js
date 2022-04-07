@@ -34,4 +34,18 @@ router.post("/",withAuth, upload.single('image'),async (req,res)=>{
         res.json(err)
     }
 });
+//delete a post with the given id
+router.delete("/",async (req,res)=>{
+    try{
+        posts.destroy({
+            where:{
+                id:req.body.id
+            }
+        })
+        console.log(req.body.id);
+        res.status(200).json()
+    }catch(err){
+        res.status(500).json(err)
+    }
+});
 module.exports=router

@@ -23,6 +23,11 @@
 <div>{{format_date postData.createdAt}}</div>
 <div>{{format_time postData.createdAt}}</div>
 <img src={{concat "../images/" uuid}}> 
+{{#if (equalto userLoggedIn postData.user_id)}}
+<form class="delete-post-form" id={{postData.id}}>
+    <input type="submit" value="Delete">
+</form>
+{{/if}}
 <!--This is a form only shown to those that are logged in. It allows them to comment -->
 {{#if loggedIn}}
 <form class="comment-form"id={{postData.id}}>
@@ -38,5 +43,11 @@ feel free to use a partial to really detail this.
 <div>{{format_date createdAt}}</div>
 <div>{{format_time createdAt}}</div>
 <div>{{content}}</div>
+{{#if (equalto userLoggedIn user_id)}}
+<form class="delete-comment-form" id={{id}}>
+    <input type="submit" value="Delete">
+</form>
+{{/if}}
 {{/each}}
 <script src="../javascript/comment.js"></script>
+<script src="../javascript/delete-content.js"></script>
