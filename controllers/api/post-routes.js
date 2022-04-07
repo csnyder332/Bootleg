@@ -37,13 +37,18 @@ router.post("/",withAuth, upload.single('image'),async (req,res)=>{
 //delete a post with the given id
 router.delete("/",async (req,res)=>{
     try{
-        posts.destroy({
-            where:{
-                id:req.body.id
-            }
-        })
-        console.log(req.body.id);
-        res.status(200).json()
+        const checkPost=await posts.findByPk(req.body.id)
+        if (checkPost.dataValues.user_id==req.session.user_id){
+            posts.destroy({
+                where:{
+                    id:req.body.id
+                }
+            })
+            console.log(req.body.id);
+            res.status(200).json()
+        }else{
+            res.status(500).json()
+        }
     }catch(err){
         res.status(500).json(err)
     }
