@@ -103,7 +103,6 @@ router.get("/post/:uuid",async(req,res)=>{
 
 router.get('*', (req, res) => {
     console.log(req.params);
-    res.status(404).send("Can't go there!");
-    // res.redirect('/');
+    res.redirect('/');
 })
 module.exports = router;

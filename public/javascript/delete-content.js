@@ -5,7 +5,7 @@ for (var x=0; x<deletecomment.length;x++){
         event.preventDefault()
         const response = await fetch("/api/comment/",{
             method:"DELETE",
-            body: JSON.stringify({id:event.target.id}),
+            body: JSON.stringify({id:event.path[1].id}),
             headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
