@@ -4,59 +4,6 @@ const {
     posts,
     comment
 } = require('../../models');
-/*  we currently dont have the handlebar to display specific users
-// Get all users
-router.get('/', (req, res) => {
-    user.findAll({
-            attributes: {
-                exclude: ['password']
-            }
-        })
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-// Get specific user
-router.get('/:id', (req, res) => {
-    user.findOne({
-            attributes: {
-                exclude: ['password']
-            },
-            where: {
-                id: req.params.id
-            },
-            include: [{
-                    model: posts,
-                    attributes: ['id', 'title', 'content', 'created_at']
-                },
-                {
-                    model: comment,
-                    attributes: ['id', 'comment_text', 'created_at'],
-                    include: {
-                        model: posts,
-                        attributes: ['title']
-                    }
-                }
-            ]
-        })
-        .then(dbUserData => {
-            if (!dbUserData) {
-                res.status(404).json({
-                    message: 'No user found with this id'
-                });
-                return;
-            }
-            res.json(dbUserData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-*/
 // Create a user
 router.post('/', async(req, res) => {
     try{
