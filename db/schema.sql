@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS user_management_db;
+DROP DATABASE IF EXISTS bootleg;
 
-CREATE DATABASE user_management_db;
+CREATE DATABASE bootleg;

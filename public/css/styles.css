@@ -1,0 +1,130 @@
+:root {
+    --modal-duration: 1s;
+    --modal-color: #428bca;
+  }
+body {
+    box-sizing: border-box;
+    margin: 20px 75px 0 55px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 4px;
+   
+}
+.button-loggedin {
+    display: flex;
+}
+
+.container {
+    margin: 50px 400px;
+    border: solid 2px black;
+    box-shadow: 10px 10px;
+    border-radius: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 50vh;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGIN/OUT FORM STYLES */
+
+.login-form, .signup-form {
+    line-height: 40px;
+
+}
+.login-form {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 7px;
+    margin: 7px 0;
+    border-radius: 5px;
+    font-weight: 700;
+}
+button[type=submit] {
+    padding: 5px;
+    width: 50%;
+    background-color: white;
+    font-weight: 700;
+}
+.btn {
+    font-size: 40px;
+    margin-right: 20px;
+}
+
+/* POST STYLES */
+
+ul {
+    list-style-type: none;
+}
+/*.post-container {
+    margin: 50px 300px 0;
+    border: 2px red solid;
+    height: 70vh;
+}*/
+ul {
+    display: flex;
+    padding-left: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.username-post {
+    margin-top: 50px;
+    border: 2px black solid;
+    font-size: 2rem;
+    text-align: left;
+    padding-left: 10px;
+  
+}
+.img-post {
+    margin-top: 1px;
+    height: 12vh;
+    width: 35vw;
+}
+img {
+    height: auto;
+}
+/* Create New Post */
+.crt-post {
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+.new-post-form {
+    display: flex;
+    flex-direction: row;
+}
+input[type=submit] {
+   background-color: white;
+}
+.post-img, .post-capt {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+
+
+@media screen and (max-width: 580px) {
+    .container, .post-container {
+        margin: 0
+    }
+    .username-post {
+        font-size: 4.5vw;
+    }
+}

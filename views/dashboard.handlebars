@@ -1,0 +1,59 @@
+{{!--
+This is the homepage. It will display all posts and descend downwards.
+It will only display the post and the user who created it. since all posts are hyperlinks,
+it will redirect the user to the /post/UUID route and display the single-post.handlears
+--}}
+<!--This will display only if the user is logged in-->
+{{#if loggedIn}}
+<section class="crt-post">
+  <h2>Create New Post</h2>
+  <form class="new-post-form">
+    <div class="post-capt">
+      <label name="caption">Caption</label>
+      <input type="text" id="caption" name="caption"/>
+    </div>
+    <div class="post-img">
+      <label for="image-input">Image</label>
+      <input required accept="image/*"  type="file" id="image-input" name="image_input" />
+    </div>
+    <div >
+      <input type="submit" class="upload-btn" value="Upload"/>
+    </div>
+  </form>
+</section>
+<script src="./javascript/add-post.js"></script>
+{{/if}}
+<section class="post-container">
+  <ul>
+    {{#each postData as |post|}}
+    <li>
+      <!--this is what the info looks like.
+      user.username is the user who created the post
+      concat is a helper i made that returns the 2 given parameters in a concat state
+      the link is /post/UUID, and once redirected, it will display the details of the post
+      image_url is the uuid.png of the image to display. all images are stored in public/images
+      caption is the caption for the post. can be optionally empty
+      -->
+      <div class="username-post">{{user.username}}</div>
+      <div class="img-post">
+        <a href={{concat "/post/" image_url}}>
+        <img src={{concat "./images/" image_url}}>
+      </div>
+      <h5>{{caption}}</h5>
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+</section>
+<!-- Will only be available if logged in -->
+{{#if loggedIn}}
+  {{!-- <section>
+    <h2>Delete Post</h2>
+    <form class="delete-post-form" action="./api/posts" method="POST" enctype="multipart/form-data">
+      <div>
+        <input type="text" id="delete-post"  placeholder="Title" name="delete-post" />
+        <input type="submit" class="btn" value="Delete"/>
+      </div>
+    </form>
+  </section> --}}
+{{/if}}
