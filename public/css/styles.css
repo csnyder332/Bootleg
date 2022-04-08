@@ -13,7 +13,7 @@ body {
     display: flex;
 }
 
-.container {
+.login-out-container {
     margin: 50px 400px;
     border: solid 2px black;
     box-shadow: 10px 10px;
@@ -112,7 +112,7 @@ input[type=submit] {
     text-align: center;
 }
 
-
+/* Single Post Styles */
 @media screen and (max-width: 580px) {
     .container, .post-container {
         margin: 0 ;

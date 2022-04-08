@@ -41,9 +41,11 @@ feel free to use a partial to really detail this.
 -->
 {{#each postData.comments}}
 <div data-debouncer="false" id={{id}}>
-<div>{{user.username}}</div>
-<div>{{format_date createdAt}}</div>
-<div>{{format_time createdAt}}</div>
+<h2>{{user.username}}</h2>
+<h4>
+    {{format_date createdAt}}
+    {{format_time createdAt}}
+<h4>
 <div class="comment-detail">{{content}}</div>
 {{#if (equalto userLoggedIn user_id)}}
 <form class="delete-comment-form">
