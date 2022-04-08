@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Posts extends Model {}
+class posts extends Model {}
 
-Posts.init(
+posts.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,19 +11,15 @@ Posts.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    ImageURL: {
+    image_url: {//the UUID of the post
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Caption: {
+    caption: {//The top/bottom text to display with the image
       type: DataTypes.STRING,
       allowNull: true,
     },
-    TimeStamp: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    user_id:{
+    user_id:{//used to display the username alongside the post
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -35,9 +31,8 @@ Posts.init(
   {
     sequelize,
     freezeTableName: true,
-    underscored: true,
     modelName: 'posts',
   }
 );
 
-module.exports = Posts;
+module.exports = posts;
