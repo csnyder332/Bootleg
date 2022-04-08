@@ -8,23 +8,21 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
 <section class="crt-post">
   <h2>Create New Post</h2>
   <form class="new-post-form">
-    <div class="post-img">
-      <label for="image-input">Image</label>
-      <input required accept="image/*"  type="file" id="image-input" name="image_input" />
-    </div>
     <div class="post-capt">
       <label name="caption">Caption</label>
       <input type="text" id="caption" name="caption"/>
     </div>
-    <div>
+    <div class="post-img">
+      <label for="image-input">Image</label>
+      <input required accept="image/*"  type="file" id="image-input" name="image_input" />
+    </div>
+    <div >
       <input type="submit" class="upload-btn" value="Upload"/>
     </div>
   </form>
 </section>
 <script src="./javascript/add-post.js"></script>
-{{/if}} 
-
-
+{{/if}}
 <section class="post-container">
   <ul>
     {{#each postData as |post|}}

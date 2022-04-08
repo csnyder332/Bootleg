@@ -99,17 +99,25 @@ img {
 }
 /* Create New Post */
 .crt-post {
-    display: flex;
+   display: flex;
     flex-direction: column;
     align-items: center;
     font-weight: bold;
+}
+.new-post-form {
+    display: flex;
+    flex-direction: row;
 }
 input[type=submit] {
    background-color: white;
 }
 .post-img, .post-capt {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
+
+
 
 
 @media screen and (max-width: 580px) {
@@ -120,4 +128,3 @@ input[type=submit] {
         font-size: 4.5vw;
     }
 }
-
