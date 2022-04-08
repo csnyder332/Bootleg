@@ -16,7 +16,7 @@ router.post("/",withAuth, upload.single('image'),async (req,res)=>{
         console.log(req.files);
         console.log(req.body);
         sharp(req.files.image_input.data)
-        .resize(170, 170, {
+        .resize(400, 400, {
           fit: sharp.fit.inside,
           withoutEnlargement: true
         })
