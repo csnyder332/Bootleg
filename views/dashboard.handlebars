@@ -37,7 +37,7 @@ it will redirect the user to the /post/UUID route and display the single-post.ha
       <div class="username-post">{{user.username}}</div>
       <div class="img-post">
         <a href={{concat "/post/" post.id}}>
-        <img src='data:image/png;base64,{{post.img}}'>
+        <img src="data:image/png;base64,{{post.img}}">
       </div>
       <h5>{{caption}}</h5>
       </a>
