@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
                 plain: true
             }));
             postData.forEach(post => {
-                post.img = post.img.toString('base64');
+                post.img = post.img.toString("base64");
             })
             console.log("postData: ");
             console.log(postData);
@@ -90,7 +90,7 @@ router.get("/post/:id",async(req,res)=>{
                 postsMap["comments"][key]["userLoggedIn"]=req.session.user_id
             }
         }
-        postsMap.img=postsMap.img.toString('base64');
+        postsMap.img=postsMap.img.toString("base64");
         console.log("postsMap");
         console.log(postsMap);
         res.render("single-post",{
