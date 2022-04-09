@@ -11,9 +11,10 @@ posts.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    image_url: {//the UUID of the post
-      type: DataTypes.STRING,
+    img: {
+      type: 'LONGBLOB',
       allowNull: false,
+     
     },
     caption: {//The top/bottom text to display with the image
       type: DataTypes.STRING,
@@ -28,11 +29,11 @@ posts.init(
         },
     }
   },
-  {
-    sequelize,
+  
+    {sequelize,
     freezeTableName: true,
-    modelName: 'posts',
-  }
+    modelName: 'posts',}
+  
 );
 
 module.exports = posts;

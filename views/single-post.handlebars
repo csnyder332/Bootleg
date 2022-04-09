@@ -22,7 +22,7 @@
 <div class="username">{{postData.user.username}}</div>
 <div>{{format_date postData.createdAt}}</div>
 <div>{{format_time postData.createdAt}}</div>
-<img src={{concat "../images/" uuid}}> 
+<img src='data:image/png;base64,{{postData.img}}'> 
 <div>{{postData.caption}}</div>
 {{#if (equalto userLoggedIn postData.user_id)}}
 <form class="delete-post-form" id={{postData.id}}>
